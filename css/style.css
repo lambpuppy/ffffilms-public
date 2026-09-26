@@ -221,7 +221,7 @@ img {
   display: block;
 }
 
-/* ---- Node pages ---- */
+/* ---- Page chrome ---- */
 
 .node-head {
   padding-top: var(--margin);
@@ -235,12 +235,6 @@ img {
   letter-spacing: 0.14em;
   text-decoration: none;
   color: var(--mute);
-}
-
-.node {
-  margin-top: clamp(3rem, 12vh, 8rem);
-  border-top: 1px solid var(--ink);
-  padding-top: 1rem;
 }
 
 .node-kind {
@@ -269,17 +263,6 @@ img {
   margin-top: 1.25rem;
 }
 
-/* A director's way into the network: signage, like the meta line above. */
-.entry-net {
-  display: inline-block;
-  font-family: var(--geo);
-  font-size: 0.72rem;
-  text-transform: uppercase;
-  letter-spacing: 0.14em;
-  color: var(--mute);
-  margin-top: 0.6rem;
-}
-
 .entry-bio {
   font-size: 0.9375rem;
   line-height: 1.6;
@@ -294,26 +277,6 @@ figure {
   align-self: start;
 }
 
-/* An image shown at its natural pixel size (used when the only available
-   source is small — honest, not upscaled) */
-.fig-natural img {
-  width: auto;
-  max-width: 100%;
-}
-
-/* A quotation standing in a figure slot — used when the work is text.
-   The type is the image. */
-.fig-quote blockquote {
-  font-size: clamp(1.375rem, 2.6vw, 2.25rem);
-  font-weight: 400;
-  line-height: 1.3;
-  letter-spacing: -0.01em;
-  text-wrap: balance;
-}
-
-.fig-quote blockquote::before { content: "\201C"; }
-.fig-quote blockquote::after  { content: "\201D"; }
-
 figcaption {
   font-size: 0.6875rem;
   line-height: 1.5;
@@ -323,26 +286,6 @@ figcaption {
 }
 
 /* ---- Edges ---- */
-
-.edges {
-  border-top: 1px solid var(--ink);
-  padding-top: 1rem;
-}
-
-.edges-head {
-  font-family: var(--geo);
-  font-size: 0.72rem;
-  font-weight: 400;
-  text-transform: uppercase;
-  letter-spacing: 0.14em;
-  color: var(--mute);
-  margin-bottom: 1.5rem;
-}
-
-.edges ul {
-  list-style: none;
-  padding: 0;
-}
 
 .edge + .edge {
   margin-top: 1.5rem;
@@ -376,60 +319,6 @@ figcaption {
   max-width: 34em;
 }
 
-/* ---- Layout variants ----
-   Asymmetric placements on the 12-col grid. Vertical offsets stagger the
-   parts so no two node pages read the same. */
-
-.l-a .entry-head { grid-column: 1 / 8; }
-.l-a .entry-bio  { grid-column: 9 / 13; }
-.l-a .fig-p      { grid-column: 1 / 5; margin-top: clamp(2rem, 8vh, 6rem); }
-.l-a .fig-1      { grid-column: 5 / 13; }
-.l-a .fig-2      { grid-column: 7 / 13; margin-top: clamp(1rem, 6vh, 4rem); }
-.l-a .edges      { grid-column: 1 / 7; }
-
-.l-b .entry-head { grid-column: 6 / 13; text-align: right; }
-.l-b .entry-bio  { grid-column: 1 / 5; align-self: end; }
-.l-b .fig-1      { grid-column: 1 / 9; }
-.l-b .fig-p      { grid-column: 9 / 13; margin-top: clamp(3rem, 12vh, 8rem); }
-.l-b .fig-2      { grid-column: 4 / 11; margin-top: clamp(1rem, 6vh, 4rem); }
-.l-b .edges      { grid-column: 7 / 13; }
-
-.l-c .entry-head { grid-column: 1 / 13; }
-.l-c .entry-bio  { grid-column: 7 / 12; }
-.l-c .fig-p      { grid-column: 1 / 4; margin-top: clamp(3rem, 14vh, 9rem); }
-.l-c .fig-1      { grid-column: 4 / 11; }
-.l-c .fig-2      { grid-column: 9 / 13; margin-top: clamp(1rem, 6vh, 4rem); }
-.l-c .edges      { grid-column: 1 / 6; }
-
-.l-d .entry-head { grid-column: 2 / 11; }
-.l-d .entry-bio  { grid-column: 2 / 6; }
-.l-d .fig-1      { grid-column: 6 / 13; }
-.l-d .fig-2      { grid-column: 1 / 7; margin-top: clamp(1rem, 6vh, 4rem); }
-.l-d .fig-p      { grid-column: 9 / 13; margin-top: clamp(4rem, 16vh, 10rem); }
-.l-d .edges      { grid-column: 8 / 13; }
-
-/* Rule-break: full-bleed figure. The one image per page allowed to leave
-   the grid and run edge to edge. Used where the work itself is immersive. */
-.break-bleed .fig-bleed {
-  grid-column: 1 / 13;
-  width: calc(100% + 2 * var(--margin));
-  margin-left: calc(-1 * var(--margin));
-  margin-top: clamp(2rem, 10vh, 6rem);
-}
-
-.break-bleed .fig-bleed figcaption {
-  padding: 0 var(--margin);
-}
-
-/* Rule-break: symmetric page. Asymmetry is the rule; a page may centre
-   itself when the work is about nothing but a centred field. */
-.break-center .entry-head { grid-column: 1 / 13; text-align: center; }
-.break-center .entry-bio  { grid-column: 4 / 10; }
-.break-center .fig-1      { grid-column: 4 / 10; }
-.break-center .fig-2      { grid-column: 4 / 10; }
-.break-center .fig-p      { grid-column: 5 / 9; margin-top: clamp(1rem, 6vh, 4rem); }
-.break-center .edges      { grid-column: 4 / 10; }
-
 /* ---- Footer ---- */
 
 .site-foot {
@@ -447,16 +336,19 @@ figcaption {
 /* ---- Scroll reveal (enhancement; pages render fully without JS) ---- */
 
 @media (prefers-reduced-motion: no-preference) {
-  .js .node figure,
-  .js .node .entry-head,
-  .js .node .entry-bio,
-  .js .node .edges {
+  .js .view figure,
+  .js .view .entry-head,
+  .js .view .entry-bio,
+  .js .network figure,
+  .js .network .entry-head,
+  .js .network .entry-bio {
     opacity: 0;
     transform: translateY(1.25rem);
     transition: opacity 0.7s ease, transform 0.7s ease;
   }
 
-  .js .node .in-view {
+  .js .view .in-view,
+  .js .network .in-view {
     opacity: 1;
     transform: none;
   }
@@ -481,25 +373,6 @@ figcaption {
     margin-top: 2.5rem;
   }
 
-  .edges {
-    margin-top: 3rem;
-  }
-
-  .l-a .fig-p, .l-b .fig-p, .l-c .fig-p, .l-d .fig-p,
-  .l-a .fig-2, .l-b .fig-2, .l-c .fig-2, .l-d .fig-2,
-  .break-center .fig-p {
-    margin-top: 2.5rem;
-  }
-
-  .l-b .entry-head {
-    text-align: left;
-  }
-
-  /* The bleed keeps its one rule-break on small screens too */
-  .break-bleed .fig-bleed {
-    width: calc(100% + 2 * var(--margin));
-    margin-left: calc(-1 * var(--margin));
-  }
 }
 
 /* ---- Views ----
@@ -813,76 +686,6 @@ figcaption {
 
 .ref-blurb { color: var(--mute); }
 
-/* ---- Overview pages ---- */
-
-.stats {
-  grid-column: 1 / 13;
-  display: grid;
-  grid-template-columns: repeat(auto-fit, minmax(9rem, 1fr));
-  column-gap: var(--gutter);
-  row-gap: 2rem;
-  border-top: 1px solid var(--ink);
-  padding-top: 1.25rem;
-  margin-top: clamp(2rem, 8vh, 5rem);
-}
-
-.stat-n {
-  display: block;
-  font-size: clamp(2rem, 4.5vw, 3.5rem);
-  font-weight: 700;
-  line-height: 1;
-  letter-spacing: -0.03em;
-}
-
-.stat-l {
-  display: block;
-  font-family: var(--geo);
-  font-size: 0.68rem;
-  text-transform: uppercase;
-  letter-spacing: 0.14em;
-  color: var(--mute);
-  margin-top: 0.5rem;
-}
-
-/* A tally is a list of counts: the number is the measure, set in the
-   geometric face, and nothing is drawn. */
-.tally {
-  list-style: none;
-  padding: 0;
-  columns: 2;
-  column-gap: clamp(1.5rem, 4vw, 3rem);
-}
-
-.tally li {
-  break-inside: avoid;
-  display: flex;
-  align-items: baseline;
-  gap: 0.75em;
-  padding: 0.3rem 0;
-  border-bottom: 1px solid rgba(22, 21, 19, 0.08);
-}
-
-.t-n {
-  font-family: var(--geo);
-  font-size: 0.8rem;
-  min-width: 3.2em;
-  text-align: right;
-  color: var(--accent);
-}
-
-.t-l { flex: 1; font-size: 0.9375rem; }
-
-.t-x {
-  font-family: var(--geo);
-  font-size: 0.68rem;
-  letter-spacing: 0.08em;
-  color: var(--mute);
-}
-
-@media (max-width: 859px) {
-  .tally { columns: 1; }
-}
-
 .d-list {
   list-style: none;
   padding: 0;
@@ -901,6 +704,23 @@ figcaption {
   letter-spacing: 0.12em;
   color: var(--mute);
   margin: 0.4rem 0 1.1rem;
+}
+
+/* The verified Letterboxd page, beside the name in the index. */
+.d-lb {
+  font-family: var(--geo);
+  font-size: 0.62rem;
+  font-weight: 400;
+  text-transform: uppercase;
+  letter-spacing: 0.12em;
+  color: var(--mute);
+  white-space: nowrap;
+  margin-left: 0.5em;
+  vertical-align: 0.45em;
+}
+
+.d-lb:hover {
+  color: var(--accent);
 }
 .d-edges .edge + .edge { margin-top: 1rem; }
 /* ---- the diagram (refs/diagram.html) ---- */
@@ -1057,6 +877,22 @@ figcaption {
   line-height: 1.05;
   letter-spacing: -0.02em;
   padding-right: 2rem;
+}
+
+.nw-lb {
+  margin: -0.9rem 0 1.1rem;
+}
+
+.nw-lb a {
+  font-family: var(--geo);
+  font-size: 0.68rem;
+  text-transform: uppercase;
+  letter-spacing: 0.12em;
+  color: var(--mute);
+}
+
+.nw-lb a:hover {
+  color: var(--accent);
 }
 
 .nw-panel .nw-to {

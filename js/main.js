@@ -15,6 +15,7 @@ const io = new IntersectionObserver(
 
 document
   .querySelectorAll(
-    ".node figure, .node .entry-head, .node .entry-bio, .node .edges"
+    ".view figure, .view .entry-head, .view .entry-bio, " +
+      ".network figure, .network .entry-head, .network .entry-bio"
   )
   .forEach((el) => io.observe(el));

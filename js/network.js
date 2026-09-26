@@ -38,7 +38,8 @@
     // the same way on every load.
     var r = 10 * Math.sqrt(0.5 + i), a = i * Math.PI * (3 - Math.sqrt(5));
     var o = { id: n.id, name: n.name, tier: n.tier, crossed: n.crossed, meta: n.meta,
-              map: n.map, cat: n.cat, also: n.also, radius: n.radius, lean: n.lean, x: r * Math.cos(a), y: r * Math.sin(a), vx: 0, vy: 0,
+              map: n.map, cat: n.cat, also: n.also, radius: n.radius, lean: n.lean, lb: n.lb,
+              x: r * Math.cos(a), y: r * Math.sin(a), vx: 0, vy: 0,
               fx: null, fy: null, str: 0 };
     byId[n.id] = o;
     return o;
@@ -547,6 +548,8 @@
       '<button type="button" class="nw-close" data-act="close" aria-label="Close">×</button>' +
       '<h2 class="nw-name">' + esc(n.name) + "</h2>" +
       '<p class="d-meta">' + esc(n.meta) + "</p>" +
+      (n.lb ? '<p class="nw-lb"><a href="' + esc(n.lb) +
+        '" target="_blank" rel="noopener">Letterboxd</a></p>' : "") +
       '<ul class="d-edges">' + (rows || '<li class="edge"><span class="edge-why">No edges yet.</span></li>') +
       "</ul>" + tools;
     panel.classList.add("is-open");
