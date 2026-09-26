@@ -670,7 +670,7 @@ figcaption {
 .tp-tree .tp-leaf { font-family: var(--text); font-size: 15px; }
 .tp-tree a:hover .tp-leaf { fill: var(--accent); }
 
-/* A name on the directors map links to its entry there. */
+/* A name links to its entry in the network's index. */
 .ep-name a { color: inherit; text-decoration: none; }
 .ep-name a:hover { color: var(--accent); }
 
@@ -883,201 +883,10 @@ figcaption {
   .tally { columns: 1; }
 }
 
-/* ---- The directors map ----
-   The one drawn layer on the site (DESIGN.md → The directors map): era
-   columns fix every director in time, the affinity edges run between the
-   names as hairlines. The layout is deterministic — never simulated — and
-   the typographic index below is the baseline the page falls back to.
-   The map has more than one view (affinities by era, circles); the
-   switcher is type, not widgets, and without script every view is simply
-   rendered in turn. */
-
-.directors .entry-head { grid-column: 1 / 9; }
-.directors .entry-bio  { grid-column: 9 / 13; }
-
-.dmap-switch {
-  grid-column: 1 / 13;
-  margin-top: clamp(2rem, 8vh, 5rem);
-  border-top: 1px solid var(--ink);
-  padding-top: 1rem;
-  display: flex;
-  flex-wrap: wrap;
-  gap: 0 1.75rem;
-}
-
-/* The tier filter sits directly under the view switcher, same type,
-   no second rule line of its own. */
-.dmap-switch--tier {
-  margin-top: 0.75rem;
-  border-top: none;
-  padding-top: 0;
-}
-
-.dmap-switch-btn {
-  font-family: var(--geo);
-  font-size: 0.72rem;
-  text-transform: uppercase;
-  letter-spacing: 0.14em;
-  color: var(--mute);
-  background: none;
-  border: none;
-  padding: 0;
-  cursor: pointer;
-}
-
-.dmap-switch-btn.is-active {
-  color: var(--ink);
-  text-decoration: underline;
-  text-decoration-thickness: 1px;
-  text-underline-offset: 4px;
-  cursor: default;
-}
-
-.dmap-view {
-  grid-column: 1 / 13;
-}
-
-.dmap-view[hidden] { display: none; }
-
-.dmap-view + .dmap-view { margin-top: 2rem; }
-
-.dmap-scroll {
-  overflow-x: auto;
-  border-top: 1px solid var(--ink);
-  padding-top: 1rem;
-  margin-top: 1.5rem;
-}
-
-.dmap {
-  position: relative;
-  min-width: 52rem;
-  display: grid;
-  grid-template-columns: repeat(6, 1fr);
-  column-gap: var(--gutter);
-}
-
-/* The circles view has no chronology to preserve, so its columns wrap
-   instead of scrolling. */
-.dmap--wrap {
-  min-width: 0;
-  grid-template-columns: repeat(auto-fill, minmax(10.5rem, 1fr));
-}
-
-.dmap-lines {
-  position: absolute;
-  inset: 0;
-  width: 100%;
-  height: 100%;
-  pointer-events: none;
-}
-
-.dmap-lines line,
-.dmap-lines path {
-  stroke: var(--accent);
-  stroke-width: 1;
-  fill: none;
-  opacity: 0.3;
-}
-
-.dmap-lines path { stroke-linejoin: round; }
-
-.dmap-lines .on  { opacity: 1; }
-.dmap-lines .off { opacity: 0.05; }
-
-.dmap-era {
-  font-family: var(--geo);
-  font-size: 0.72rem;
-  font-weight: 400;
-  text-transform: uppercase;
-  letter-spacing: 0.14em;
-  color: var(--mute);
-  margin-bottom: 1.25rem;
-}
-
-.dmap-list {
-  list-style: none;
-  padding: 0;
-  margin: 0;
-}
-
-.dmap-list li + li { margin-top: 0.55rem; }
-
-/* Names carry no backing: the hairlines run behind the glyphs, visible in
-   the whitespace, so a crossing edge is never fully hidden. */
-.dmap-node {
-  position: relative;
-  z-index: 1;
-  display: block;
-  font-size: 0.8125rem;
-  font-weight: 700;
-  letter-spacing: -0.01em;
-  line-height: 1.25;
-  text-decoration: none;
-}
-
-.dmap-n {
-  font-family: var(--geo);
-  font-size: 0.62rem;
-  font-weight: 400;
-  letter-spacing: 0.08em;
-  color: var(--accent);
-  display: inline-block;
-  min-width: 1.9em;
-  vertical-align: 0.3em;
-}
-
-/* A director no affinity reaches keeps the number withheld — the map's
-   emptiness is data, not noise to be counted. (.dmap-zero stays in the
-   markup as that marker; the greys below speak favourite tiers only.) */
-
-/* Favourite tiers 3-5 — the full list below the core map, one step
-   lighter, so the greys say what the hand set, not the rank. */
-.dmap-list li[data-tier="2"] .dmap-node {
-  font-weight: 400;
-  color: var(--mute);
-  opacity: 0.7;
-}
-
-/* Crossed off — enjoyed but not watched enough to judge; kept for the
-   record, lightest of all. */
-.dmap-list li[data-crossed] .dmap-node {
-  font-weight: 400;
-  color: var(--mute);
-  opacity: 0.5;
-}
-
-/* Hovering singles out a director and the names its edges reach. */
-.dmap-node.near {
-  color: var(--accent);
-}
-
-.dmap-note {
-  font-size: 0.6875rem;
-  line-height: 1.5;
-  color: var(--mute);
-  max-width: 46em;
-  margin-top: 1rem;
-}
-
-/* The index: every director with their affinities as text. This, not the
-   schematic, is the map without script. */
-
-.d-era {
-  grid-column: 1 / 10;
-  border-top: 1px solid var(--ink);
-  padding-top: 1rem;
-  margin-top: clamp(3rem, 10vh, 6rem);
-}
-
-.directors .dmap-view + .d-era { margin-top: clamp(2rem, 8vh, 5rem); }
-
 .d-list {
   list-style: none;
   padding: 0;
 }
-
-.d-entry + .d-entry { margin-top: 2.75rem; }
-
 .d-name {
   font-size: clamp(1.25rem, 2.4vw, 1.9rem);
   font-weight: 700;
@@ -1093,26 +902,7 @@ figcaption {
   color: var(--mute);
   margin: 0.4rem 0 1.1rem;
 }
-
-/* Crossed-off directors read lighter here too, as in the schematic. */
-.d-entry[data-crossed] .d-name {
-  color: var(--mute);
-  opacity: 0.6;
-}
-
 .d-edges .edge + .edge { margin-top: 1rem; }
-
-.d-edges .edge-to {
-  font-size: clamp(1rem, 1.8vw, 1.25rem);
-}
-
-@media (max-width: 859px) {
-  .dmap-scroll { margin-top: 2rem; }
-  .dmap-note { margin-top: 0.75rem; }
-  .d-era { margin-top: 3rem; }
-  .d-entry + .d-entry { margin-top: 2rem; }
-}
-
 /* ---- the diagram (refs/diagram.html) ---- */
 
 .dg-block { overflow-x: auto; }
@@ -1164,8 +954,8 @@ figcaption {
 /* ---- The network (network.html) ----
    A force-directed reading of the directors' edges, script-drawn on one
    canvas. The stage is hidden without script; the index below it is the
-   page's baseline. Nodes keep the directors map's three greys, edges the
-   accent. On wide screens the panel sits beside the canvas; on narrow
+   page's baseline. Nodes keep the three tier greys, edges the accent.
+   On wide screens the panel sits beside the canvas; on narrow
    ones it rises as a sheet over the lower half. */
 
 .network .entry-head { grid-column: 1 / 9; }
@@ -1191,6 +981,26 @@ figcaption {
   flex-wrap: wrap;
   align-items: baseline;
   gap: 0 1rem;
+}
+
+.nw-switch-btn {
+  font-family: var(--geo);
+  font-size: 0.72rem;
+  text-transform: uppercase;
+  letter-spacing: 0.14em;
+  color: var(--mute);
+  background: none;
+  border: none;
+  padding: 0;
+  cursor: pointer;
+}
+
+.nw-switch-btn.is-active {
+  color: var(--ink);
+  text-decoration: underline;
+  text-decoration-thickness: 1px;
+  text-underline-offset: 4px;
+  cursor: default;
 }
 
 .nw-label,
@@ -1249,11 +1059,6 @@ figcaption {
   padding-right: 2rem;
 }
 
-.nw-links {
-  font-size: 0.75rem;
-  margin-bottom: 1.25rem;
-}
-
 .nw-panel .nw-to {
   font-size: 1.125rem;
   font-weight: 700;
@@ -1298,10 +1103,12 @@ figcaption {
 }
 
 .nw-index { grid-column: 1 / 13; margin-top: clamp(3rem, 10vh, 6rem); }
+.nw-index summary { cursor: pointer; list-style: none; margin-bottom: 0; }
+.nw-index summary::-webkit-details-marker { display: none; }
+.nw-index summary::marker { content: ""; }
+.nw-index[open] summary { margin-bottom: 1.5rem; }
 .nw-index .d-list { columns: 2 22rem; column-gap: calc(var(--gutter) * 3); }
-.nw-index .d-entry { break-inside: avoid; padding-bottom: 2.25rem; }
-.nw-index .d-entry + .d-entry { margin-top: 0; }
-.nw-index .d-edges { list-style: none; padding: 0; }
+.nw-index .d-entry { break-inside: avoid; padding-bottom: 2.25rem; }.nw-index .d-edges { list-style: none; padding: 0; }
 .nw-index .d-name a { text-decoration: none; }
 .nw-index .d-meta a { color: inherit; }
 .d-entry:target .d-name { color: var(--accent); }

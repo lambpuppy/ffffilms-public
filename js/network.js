@@ -38,7 +38,7 @@
     // the same way on every load.
     var r = 10 * Math.sqrt(0.5 + i), a = i * Math.PI * (3 - Math.sqrt(5));
     var o = { id: n.id, name: n.name, tier: n.tier, crossed: n.crossed, meta: n.meta,
-              page: n.page, map: n.map, cat: n.cat, also: n.also, radius: n.radius, lean: n.lean, x: r * Math.cos(a), y: r * Math.sin(a), vx: 0, vy: 0,
+              map: n.map, cat: n.cat, also: n.also, radius: n.radius, lean: n.lean, x: r * Math.cos(a), y: r * Math.sin(a), vx: 0, vy: 0,
               fx: null, fy: null, str: 0 };
     byId[n.id] = o;
     return o;
@@ -327,7 +327,7 @@
     });
     ctx.setLineDash([]);
 
-    // Nodes: three greys for the three tiers, as on the directors map.
+    // Nodes: three greys for the three tiers.
     // A node there only by its secondary category is drawn as a ring.
     visNodes.forEach(function (n) {
       ctx.globalAlpha = nbSet && !nbSet[n.id] ? 0.12 : n.crossed ? 0.45 : 1;
@@ -524,9 +524,6 @@
     var n = byId[state.sel];
     var mine = visEdges.filter(function (e) { return e.s === n.id || e.t === n.id; })
       .sort(function (a, b) { return b.w - a.w; });
-    var links = [n.map ? '<a href="directors.html#d-' + n.id + '">Directors map</a>' : "",
-                 n.page ? '<a href="n/' + n.id + '.html">Node page</a>' : ""]
-      .filter(Boolean).join(" · ");
     var rows = mine.map(function (e) {
       var o = e.s === n.id ? e.target : e.source;
       var w = overrides[e.key] != null
@@ -550,7 +547,6 @@
       '<button type="button" class="nw-close" data-act="close" aria-label="Close">×</button>' +
       '<h2 class="nw-name">' + esc(n.name) + "</h2>" +
       '<p class="d-meta">' + esc(n.meta) + "</p>" +
-      '<p class="nw-links">' + links + "</p>" +
       '<ul class="d-edges">' + (rows || '<li class="edge"><span class="edge-why">No edges yet.</span></li>') +
       "</ul>" + tools;
     panel.classList.add("is-open");
@@ -607,7 +603,7 @@
   // ---- Controls: type, not widgets (DESIGN.md → Views) ----
 
   function btn(label, on, data) {
-    return '<button type="button" class="dmap-switch-btn' + (on ? " is-active" : "") +
+    return '<button type="button" class="nw-switch-btn' + (on ? " is-active" : "") +
       '" aria-pressed="' + on + '" ' + data + ">" + label + "</button>";
   }
   function renderControls() {
@@ -673,8 +669,15 @@
   size();
   settle();
   renderControls();
+  // Names elsewhere link here as #g-<slug>; the index entry is the anchor,
+  // so open the index when the hash names one, and select it on the canvas.
   var initial = decodeURIComponent(location.hash.slice(1));
+  if (initial.indexOf("g-") === 0) initial = initial.slice(2);
   select(byId[initial] ? initial : null, { center: !!byId[initial] });
+  if (byId[initial]) {
+    var index = document.querySelector(".nw-index");
+    if (index) index.open = true;
+  }
   draw();
 
   if (window.ResizeObserver) {
