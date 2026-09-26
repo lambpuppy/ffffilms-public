@@ -1,0 +1,1324 @@
+/* ffffilms — shared stylesheet. Grid, type and rules are defined in DESIGN.md. */
+
+@font-face {
+  font-family: "Inter";
+  src: url("../fonts/inter-var-latin.woff2") format("woff2");
+  font-weight: 100 900;
+  font-display: swap;
+}
+
+@font-face {
+  font-family: "Jost";
+  src: url("../fonts/jost-var-latin.woff2") format("woff2");
+  font-weight: 100 900;
+  font-display: swap;
+}
+
+:root {
+  --ground: #f2f0eb;
+  --ink: #161513;
+  --mute: #6f6b64;
+  --accent: #d9301f;
+  --text: "Helvetica Neue", Helvetica, Inter, Arial, sans-serif;
+  --geo: Futura, Jost, sans-serif;
+  --margin: clamp(1.25rem, 4vw, 4rem);
+  --gutter: clamp(0.75rem, 1.5vw, 1.5rem);
+  --title-size: clamp(4.5rem, 17vw, 15rem);
+}
+
+* {
+  box-sizing: border-box;
+  margin: 0;
+}
+
+html {
+  scroll-padding-top: 2rem;
+}
+
+@media (prefers-reduced-motion: no-preference) {
+  html {
+    scroll-behavior: smooth;
+  }
+}
+
+body {
+  background: var(--ground);
+  color: var(--ink);
+  font-family: var(--text);
+  font-size: 1rem;
+  line-height: 1.5;
+  padding: 0 var(--margin);
+}
+
+a {
+  color: inherit;
+  text-decoration-thickness: 1px;
+  text-underline-offset: 2px;
+}
+
+a:hover {
+  color: var(--accent);
+}
+
+img {
+  display: block;
+  width: 100%;
+  height: auto;
+}
+
+::selection {
+  background: var(--ink);
+  color: var(--ground);
+}
+
+/* 12-column grid */
+.grid {
+  display: grid;
+  grid-template-columns: repeat(12, 1fr);
+  column-gap: var(--gutter);
+  row-gap: clamp(2rem, 6vh, 4.5rem);
+}
+
+/* ---- Header ---- */
+
+.site-head {
+  padding-top: var(--margin);
+}
+
+.site-title {
+  grid-column: 1 / 11;
+  padding-right: clamp(2.5rem, 5vw, 4rem);
+  font-size: var(--title-size);
+  font-weight: 700;
+  line-height: 0.85;
+  letter-spacing: -0.04em;
+}
+
+/* ---- The menu ----
+   The motif — three marks and the line between them, the map in miniature —
+   doubles as the menu and as the favicon. It is a <details> disclosure, so
+   it opens with no JavaScript and keeps its keyboard behaviour for free. */
+
+.menu {
+  position: fixed;
+  top: var(--margin);
+  right: var(--margin);
+  z-index: 10;
+}
+
+.menu summary {
+  display: block;
+  width: clamp(1.5rem, 2.5vw, 2rem);
+  cursor: pointer;
+  list-style: none;
+}
+
+.menu summary::-webkit-details-marker { display: none; }
+.menu summary::marker { content: ""; }
+
+.menu summary img {
+  display: block;
+  width: 100%;
+  height: auto;
+  transition: opacity 0.2s ease;
+}
+
+.menu summary:hover img { opacity: 0.55; }
+.menu[open] summary img { opacity: 0.35; }
+
+.menu summary:focus-visible {
+  outline: 1px solid var(--accent);
+  outline-offset: 4px;
+}
+
+.menu nav {
+  position: absolute;
+  top: calc(100% + 0.9rem);
+  right: 0;
+  min-width: 15rem;
+  background: var(--ground);
+  border: 1px solid var(--ink);
+  padding: 1rem 1.25rem;
+}
+
+.menu nav ul {
+  list-style: none;
+  padding: 0;
+  margin: 0;
+}
+
+.menu nav li + li { margin-top: 0.6rem; }
+
+.menu nav a {
+  font-family: var(--geo);
+  font-size: 0.72rem;
+  text-transform: uppercase;
+  letter-spacing: 0.12em;
+  text-decoration: none;
+  white-space: nowrap;
+}
+
+.site-note {
+  grid-column: 9 / 13;
+  align-self: end;
+  font-size: 0.875rem;
+  max-width: 22em;
+}
+
+/* ---- The lead (summary + ways in) ---- */
+
+.home-lead {
+  margin-top: clamp(3rem, 10vh, 7rem);
+}
+
+.home-summary {
+  grid-column: 1 / 7;
+  border-top: 1px solid var(--ink);
+  padding-top: 1rem;
+  font-size: 0.875rem;
+  line-height: 1.55;
+  max-width: 34em;
+}
+
+.home-summary p + p { margin-top: 0.9rem; }
+
+.home-start {
+  grid-column: 8 / 13;
+  align-self: start;
+  border-top: 1px solid var(--ink);
+  padding-top: 1rem;
+}
+
+.home-start li {
+  font-size: 0.875rem;
+  line-height: 1.5;
+}
+
+.home-start .ref-blurb {
+  display: block;
+}
+
+/* ---- The map (index) ---- */
+
+.map {
+  margin-top: clamp(3rem, 10vh, 7rem);
+}
+
+.ix-group {
+  border-top: 1px solid var(--ink);
+  padding-top: 1rem;
+}
+
+/* Two kinds, two columns, tops aligned. */
+.ix-group:nth-child(1) { grid-column: 1 / 6; }
+.ix-group:nth-child(2) { grid-column: 7 / 13; }
+
+.ix-kind {
+  font-family: var(--geo);
+  font-size: 0.72rem;
+  font-weight: 400;
+  text-transform: uppercase;
+  letter-spacing: 0.14em;
+  color: var(--mute);
+  margin-bottom: 1.25rem;
+}
+
+.ix-list {
+  list-style: none;
+  padding: 0;
+}
+
+.ix-list li + li {
+  margin-top: 0.4rem;
+}
+
+.ix-list a {
+  font-size: clamp(1.125rem, 2.2vw, 1.75rem);
+  font-weight: 700;
+  letter-spacing: -0.015em;
+  text-decoration: none;
+  line-height: 1.15;
+  display: block;
+}
+
+/* ---- Node pages ---- */
+
+.node-head {
+  padding-top: var(--margin);
+}
+
+.back {
+  grid-column: 1 / 11;
+  font-family: var(--geo);
+  font-size: 0.72rem;
+  text-transform: uppercase;
+  letter-spacing: 0.14em;
+  text-decoration: none;
+  color: var(--mute);
+}
+
+.node {
+  margin-top: clamp(3rem, 12vh, 8rem);
+  border-top: 1px solid var(--ink);
+  padding-top: 1rem;
+}
+
+.node-kind {
+  display: block;
+  font-family: var(--geo);
+  font-size: 0.75rem;
+  letter-spacing: 0.15em;
+  text-transform: uppercase;
+  color: var(--accent);
+  margin-bottom: 1.25rem;
+}
+
+.entry-name {
+  font-size: clamp(2.5rem, 8.5vw, 8rem);
+  font-weight: 700;
+  line-height: 0.92;
+  letter-spacing: -0.025em;
+}
+
+.entry-meta {
+  font-family: var(--geo);
+  font-size: 0.72rem;
+  font-weight: 400;
+  text-transform: uppercase;
+  letter-spacing: 0.14em;
+  margin-top: 1.25rem;
+}
+
+/* A director's way into the network: signage, like the meta line above. */
+.entry-net {
+  display: inline-block;
+  font-family: var(--geo);
+  font-size: 0.72rem;
+  text-transform: uppercase;
+  letter-spacing: 0.14em;
+  color: var(--mute);
+  margin-top: 0.6rem;
+}
+
+.entry-bio {
+  font-size: 0.9375rem;
+  line-height: 1.6;
+  max-width: 36em;
+}
+
+.entry-bio p + p {
+  margin-top: 0.75em;
+}
+
+figure {
+  align-self: start;
+}
+
+/* An image shown at its natural pixel size (used when the only available
+   source is small — honest, not upscaled) */
+.fig-natural img {
+  width: auto;
+  max-width: 100%;
+}
+
+/* A quotation standing in a figure slot — used when the work is text.
+   The type is the image. */
+.fig-quote blockquote {
+  font-size: clamp(1.375rem, 2.6vw, 2.25rem);
+  font-weight: 400;
+  line-height: 1.3;
+  letter-spacing: -0.01em;
+  text-wrap: balance;
+}
+
+.fig-quote blockquote::before { content: "\201C"; }
+.fig-quote blockquote::after  { content: "\201D"; }
+
+figcaption {
+  font-size: 0.6875rem;
+  line-height: 1.5;
+  color: var(--mute);
+  margin-top: 0.5em;
+  max-width: 36em;
+}
+
+/* ---- Edges ---- */
+
+.edges {
+  border-top: 1px solid var(--ink);
+  padding-top: 1rem;
+}
+
+.edges-head {
+  font-family: var(--geo);
+  font-size: 0.72rem;
+  font-weight: 400;
+  text-transform: uppercase;
+  letter-spacing: 0.14em;
+  color: var(--mute);
+  margin-bottom: 1.5rem;
+}
+
+.edges ul {
+  list-style: none;
+  padding: 0;
+}
+
+.edge + .edge {
+  margin-top: 1.5rem;
+}
+
+/* The relation is the accent's one job on the page. */
+.edge-rel {
+  display: block;
+  font-family: var(--geo);
+  font-size: 0.7rem;
+  text-transform: uppercase;
+  letter-spacing: 0.14em;
+  color: var(--accent);
+  margin-bottom: 0.25rem;
+}
+
+.edge-to {
+  font-size: clamp(1.25rem, 2.6vw, 2rem);
+  font-weight: 700;
+  letter-spacing: -0.015em;
+  line-height: 1.15;
+  text-decoration: none;
+}
+
+.edge-why {
+  display: block;
+  font-size: 0.8125rem;
+  line-height: 1.5;
+  color: var(--mute);
+  margin-top: 0.35rem;
+  max-width: 34em;
+}
+
+/* ---- Layout variants ----
+   Asymmetric placements on the 12-col grid. Vertical offsets stagger the
+   parts so no two node pages read the same. */
+
+.l-a .entry-head { grid-column: 1 / 8; }
+.l-a .entry-bio  { grid-column: 9 / 13; }
+.l-a .fig-p      { grid-column: 1 / 5; margin-top: clamp(2rem, 8vh, 6rem); }
+.l-a .fig-1      { grid-column: 5 / 13; }
+.l-a .fig-2      { grid-column: 7 / 13; margin-top: clamp(1rem, 6vh, 4rem); }
+.l-a .edges      { grid-column: 1 / 7; }
+
+.l-b .entry-head { grid-column: 6 / 13; text-align: right; }
+.l-b .entry-bio  { grid-column: 1 / 5; align-self: end; }
+.l-b .fig-1      { grid-column: 1 / 9; }
+.l-b .fig-p      { grid-column: 9 / 13; margin-top: clamp(3rem, 12vh, 8rem); }
+.l-b .fig-2      { grid-column: 4 / 11; margin-top: clamp(1rem, 6vh, 4rem); }
+.l-b .edges      { grid-column: 7 / 13; }
+
+.l-c .entry-head { grid-column: 1 / 13; }
+.l-c .entry-bio  { grid-column: 7 / 12; }
+.l-c .fig-p      { grid-column: 1 / 4; margin-top: clamp(3rem, 14vh, 9rem); }
+.l-c .fig-1      { grid-column: 4 / 11; }
+.l-c .fig-2      { grid-column: 9 / 13; margin-top: clamp(1rem, 6vh, 4rem); }
+.l-c .edges      { grid-column: 1 / 6; }
+
+.l-d .entry-head { grid-column: 2 / 11; }
+.l-d .entry-bio  { grid-column: 2 / 6; }
+.l-d .fig-1      { grid-column: 6 / 13; }
+.l-d .fig-2      { grid-column: 1 / 7; margin-top: clamp(1rem, 6vh, 4rem); }
+.l-d .fig-p      { grid-column: 9 / 13; margin-top: clamp(4rem, 16vh, 10rem); }
+.l-d .edges      { grid-column: 8 / 13; }
+
+/* Rule-break: full-bleed figure. The one image per page allowed to leave
+   the grid and run edge to edge. Used where the work itself is immersive. */
+.break-bleed .fig-bleed {
+  grid-column: 1 / 13;
+  width: calc(100% + 2 * var(--margin));
+  margin-left: calc(-1 * var(--margin));
+  margin-top: clamp(2rem, 10vh, 6rem);
+}
+
+.break-bleed .fig-bleed figcaption {
+  padding: 0 var(--margin);
+}
+
+/* Rule-break: symmetric page. Asymmetry is the rule; a page may centre
+   itself when the work is about nothing but a centred field. */
+.break-center .entry-head { grid-column: 1 / 13; text-align: center; }
+.break-center .entry-bio  { grid-column: 4 / 10; }
+.break-center .fig-1      { grid-column: 4 / 10; }
+.break-center .fig-2      { grid-column: 4 / 10; }
+.break-center .fig-p      { grid-column: 5 / 9; margin-top: clamp(1rem, 6vh, 4rem); }
+.break-center .edges      { grid-column: 4 / 10; }
+
+/* ---- Footer ---- */
+
+.site-foot {
+  margin-top: clamp(6rem, 22vh, 14rem);
+  border-top: 1px solid var(--ink);
+  padding: 1rem 0 var(--margin);
+  font-size: 0.6875rem;
+  color: var(--mute);
+  display: flex;
+  justify-content: space-between;
+  gap: var(--gutter);
+  flex-wrap: wrap;
+}
+
+/* ---- Scroll reveal (enhancement; pages render fully without JS) ---- */
+
+@media (prefers-reduced-motion: no-preference) {
+  .js .node figure,
+  .js .node .entry-head,
+  .js .node .entry-bio,
+  .js .node .edges,
+  .js .map .ix-group {
+    opacity: 0;
+    transform: translateY(1.25rem);
+    transition: opacity 0.7s ease, transform 0.7s ease;
+  }
+
+  .js .node .in-view,
+  .js .map .in-view {
+    opacity: 1;
+    transform: none;
+  }
+}
+
+/* ---- Narrow viewports: the grid collapses to a single column ---- */
+
+@media (max-width: 859px) {
+  .grid {
+    display: block;
+  }
+
+  .site-title {
+    margin-bottom: 2rem;
+  }
+
+  .site-note {
+    margin-bottom: 2.5rem;
+  }
+
+  .ix-group + .ix-group {
+    margin-top: 3rem;
+  }
+
+  .entry-bio {
+    margin-top: 2rem;
+  }
+
+  figure {
+    margin-top: 2.5rem;
+  }
+
+  .edges {
+    margin-top: 3rem;
+  }
+
+  .l-a .fig-p, .l-b .fig-p, .l-c .fig-p, .l-d .fig-p,
+  .l-a .fig-2, .l-b .fig-2, .l-c .fig-2, .l-d .fig-2,
+  .break-center .fig-p {
+    margin-top: 2.5rem;
+  }
+
+  .l-b .entry-head {
+    text-align: left;
+  }
+
+  /* The bleed keeps its one rule-break on small screens too */
+  .break-bleed .fig-bleed {
+    width: calc(100% + 2 * var(--margin));
+    margin-left: calc(-1 * var(--margin));
+  }
+}
+
+/* ---- Views ----
+   A view is an index, not a chart (DESIGN.md → Views). Order is the score;
+   no number is printed. The accent marks the anchor and the path, so axis
+   values and coverage stay in ink at caption scale. */
+
+.view {
+  margin-top: clamp(3rem, 12vh, 8rem);
+  border-top: 1px solid var(--ink);
+  padding-top: 1rem;
+}
+
+.view .entry-head { grid-column: 1 / 9; }
+.view .entry-bio  { grid-column: 9 / 13; }
+
+.v-counts {
+  font-family: var(--geo);
+  font-size: 0.7rem;
+  text-transform: uppercase;
+  letter-spacing: 0.12em;
+  color: var(--mute);
+  margin-top: 1.25rem;
+}
+
+.v-block {
+  grid-column: 1 / 10;
+  border-top: 1px solid var(--ink);
+  padding-top: 1rem;
+  margin-top: clamp(2rem, 8vh, 5rem);
+}
+
+.v-block + .v-block { margin-top: clamp(3rem, 10vh, 6rem); }
+
+.v-block-head {
+  font-family: var(--geo);
+  font-size: 0.72rem;
+  font-weight: 400;
+  text-transform: uppercase;
+  letter-spacing: 0.14em;
+  color: var(--mute);
+  margin-bottom: 1.5rem;
+}
+
+.v-note {
+  font-size: 0.8125rem;
+  color: var(--mute);
+  max-width: 34em;
+  margin-bottom: 1.5rem;
+}
+
+.v-list {
+  list-style: none;
+  padding: 0;
+  counter-reset: rank;
+}
+
+.v-result {
+  counter-increment: rank;
+  padding-left: 3.5em;
+  position: relative;
+}
+
+.v-result + .v-result { margin-top: 1.1rem; }
+
+/* The rank is the only number on the page: order is the score. */
+.v-result::before {
+  content: counter(rank, decimal-leading-zero);
+  position: absolute;
+  left: 0;
+  top: 0.35em;
+  font-family: var(--geo);
+  font-size: 0.7rem;
+  letter-spacing: 0.1em;
+  color: var(--mute);
+}
+
+.v-title {
+  font-size: clamp(1.125rem, 2.2vw, 1.75rem);
+  font-weight: 700;
+  letter-spacing: -0.015em;
+  line-height: 1.15;
+}
+
+.v-year {
+  font-family: var(--geo);
+  font-size: 0.8rem;
+  color: var(--mute);
+  margin-left: 0.4em;
+}
+
+.v-why,
+.v-aversion {
+  display: block;
+  font-size: 0.75rem;
+  line-height: 1.5;
+  color: var(--mute);
+  margin-top: 0.2rem;
+  max-width: 34em;
+}
+
+.v-aversion { font-style: italic; }
+
+/* Set-aside films are grouped under the aversion that set them aside;
+   its reason is stated once, above the group. */
+.v-aside-why { margin-top: 1.5rem; }
+.v-aside-why:first-of-type { margin-top: 0; }
+
+/* ---- Entry points ---- */
+
+/* The guide: one entry per filmmaker, two picks each. The marks are
+   not authored — the build resolves them from the collection, so
+   seen reads ink and queued reads grey. */
+.ep-list {
+  list-style: none;
+  padding: 0;
+}
+
+.ep-entry + .ep-entry { margin-top: 2.75rem; }
+
+.ep-name {
+  font-size: clamp(1.125rem, 2vw, 1.6rem);
+  font-weight: 700;
+  letter-spacing: -0.015em;
+  line-height: 1.15;
+}
+
+/* A name on the directors map links to its entry there. */
+.ep-name a { color: inherit; text-decoration: none; }
+.ep-name a:hover { color: var(--accent); }
+
+.ep-meta {
+  font-family: var(--geo);
+  font-size: 0.66rem;
+  text-transform: uppercase;
+  letter-spacing: 0.12em;
+  color: var(--mute);
+  margin: 0.35rem 0 0.8rem;
+}
+
+.ep-bio {
+  font-size: 0.875rem;
+  line-height: 1.55;
+  max-width: 46em;
+}
+
+.ep-picks {
+  font-size: 0.85rem;
+  margin-top: 0.7rem;
+}
+
+.ep-picks em { font-style: italic; }
+
+.ep-mark {
+  font-family: var(--geo);
+  font-size: 0.62rem;
+  text-transform: uppercase;
+  letter-spacing: 0.1em;
+  color: var(--mute);
+  margin-left: 0.35em;
+}
+
+.ep-mark.ep-seen { color: var(--ink); }
+
+.ep-note {
+  font-size: 0.78rem;
+  color: var(--mute);
+}
+
+/* ---- Reference page (Schrader's diagram) ---- */
+
+/* The diagram itself: tall, so it is capped narrower than the column. */
+.ref-figure img {
+  display: block;
+  width: 100%;
+  max-width: 34em;
+  height: auto;
+}
+
+.ref-para {
+  font-size: 0.875rem;
+  line-height: 1.55;
+  max-width: 46em;
+}
+
+.ref-para + .ref-para { margin-top: 0.9rem; }
+.ref-para + .ref-table, .ref-table + .ref-para { margin-top: 1.25rem; }
+
+/* One rule, under the header only: the table states, it doesn't grid. */
+.ref-table {
+  border-collapse: collapse;
+  font-size: 0.85rem;
+  max-width: 46em;
+}
+
+.ref-table th {
+  font-family: var(--geo);
+  font-size: 0.64rem;
+  font-weight: 400;
+  text-transform: uppercase;
+  letter-spacing: 0.12em;
+  color: var(--mute);
+  text-align: left;
+  padding: 0 1.75rem 0.5rem 0;
+  border-bottom: 1px solid var(--ink);
+}
+
+.ref-table td {
+  padding: 0.6rem 1.75rem 0.6rem 0;
+  vertical-align: top;
+  line-height: 1.45;
+}
+
+.ref-table td:first-child { white-space: nowrap; }
+
+.ref-src {
+  list-style: none;
+  padding: 0;
+}
+
+.ref-src li {
+  font-size: 0.75rem;
+  line-height: 1.5;
+  color: var(--mute);
+  max-width: 46em;
+}
+
+.ref-src li + li { margin-top: 0.6rem; }
+
+/* ---- Discoveries page ---- */
+
+/* A wall of titles: set in columns so the length reads at a glance. */
+.dc-list {
+  list-style: none;
+  padding: 0;
+  margin: 0;
+  column-width: 24em;
+  column-gap: 3rem;
+}
+
+.dc-list li {
+  font-size: 0.8125rem;
+  line-height: 1.5;
+  padding: 0.18rem 0;
+  break-inside: avoid;
+}
+
+.dc-count {
+  font-family: var(--geo);
+  font-size: 0.64rem;
+  letter-spacing: 0.12em;
+  color: var(--mute);
+}
+
+/* ---- References hub (the gap analysis) ---- */
+
+.ref-index {
+  list-style: none;
+  padding: 0;
+}
+
+.ref-index li {
+  font-size: 0.875rem;
+  line-height: 1.5;
+}
+
+.ref-index li + li { margin-top: 0.5rem; }
+
+.ref-blurb { color: var(--mute); }
+
+/* ---- Overview pages ---- */
+
+.stats {
+  grid-column: 1 / 13;
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(9rem, 1fr));
+  column-gap: var(--gutter);
+  row-gap: 2rem;
+  border-top: 1px solid var(--ink);
+  padding-top: 1.25rem;
+  margin-top: clamp(2rem, 8vh, 5rem);
+}
+
+.stat-n {
+  display: block;
+  font-size: clamp(2rem, 4.5vw, 3.5rem);
+  font-weight: 700;
+  line-height: 1;
+  letter-spacing: -0.03em;
+}
+
+.stat-l {
+  display: block;
+  font-family: var(--geo);
+  font-size: 0.68rem;
+  text-transform: uppercase;
+  letter-spacing: 0.14em;
+  color: var(--mute);
+  margin-top: 0.5rem;
+}
+
+/* A tally is a list of counts: the number is the measure, set in the
+   geometric face, and nothing is drawn. */
+.tally {
+  list-style: none;
+  padding: 0;
+  columns: 2;
+  column-gap: clamp(1.5rem, 4vw, 3rem);
+}
+
+.tally li {
+  break-inside: avoid;
+  display: flex;
+  align-items: baseline;
+  gap: 0.75em;
+  padding: 0.3rem 0;
+  border-bottom: 1px solid rgba(22, 21, 19, 0.08);
+}
+
+.t-n {
+  font-family: var(--geo);
+  font-size: 0.8rem;
+  min-width: 3.2em;
+  text-align: right;
+  color: var(--accent);
+}
+
+.t-l { flex: 1; font-size: 0.9375rem; }
+
+.t-x {
+  font-family: var(--geo);
+  font-size: 0.68rem;
+  letter-spacing: 0.08em;
+  color: var(--mute);
+}
+
+@media (max-width: 859px) {
+  .tally { columns: 1; }
+}
+
+/* ---- The directors map ----
+   The one drawn layer on the site (DESIGN.md → The directors map): era
+   columns fix every director in time, the affinity edges run between the
+   names as hairlines. The layout is deterministic — never simulated — and
+   the typographic index below is the baseline the page falls back to.
+   The map has more than one view (affinities by era, circles); the
+   switcher is type, not widgets, and without script every view is simply
+   rendered in turn. */
+
+.directors .entry-head { grid-column: 1 / 9; }
+.directors .entry-bio  { grid-column: 9 / 13; }
+
+.dmap-switch {
+  grid-column: 1 / 13;
+  margin-top: clamp(2rem, 8vh, 5rem);
+  border-top: 1px solid var(--ink);
+  padding-top: 1rem;
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0 1.75rem;
+}
+
+/* The tier filter sits directly under the view switcher, same type,
+   no second rule line of its own. */
+.dmap-switch--tier {
+  margin-top: 0.75rem;
+  border-top: none;
+  padding-top: 0;
+}
+
+.dmap-switch-btn {
+  font-family: var(--geo);
+  font-size: 0.72rem;
+  text-transform: uppercase;
+  letter-spacing: 0.14em;
+  color: var(--mute);
+  background: none;
+  border: none;
+  padding: 0;
+  cursor: pointer;
+}
+
+.dmap-switch-btn.is-active {
+  color: var(--ink);
+  text-decoration: underline;
+  text-decoration-thickness: 1px;
+  text-underline-offset: 4px;
+  cursor: default;
+}
+
+.dmap-view {
+  grid-column: 1 / 13;
+}
+
+.dmap-view[hidden] { display: none; }
+
+.dmap-view + .dmap-view { margin-top: 2rem; }
+
+.dmap-scroll {
+  overflow-x: auto;
+  border-top: 1px solid var(--ink);
+  padding-top: 1rem;
+  margin-top: 1.5rem;
+}
+
+.dmap {
+  position: relative;
+  min-width: 52rem;
+  display: grid;
+  grid-template-columns: repeat(6, 1fr);
+  column-gap: var(--gutter);
+}
+
+/* The circles view has no chronology to preserve, so its columns wrap
+   instead of scrolling. */
+.dmap--wrap {
+  min-width: 0;
+  grid-template-columns: repeat(auto-fill, minmax(10.5rem, 1fr));
+}
+
+.dmap-lines {
+  position: absolute;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+  pointer-events: none;
+}
+
+.dmap-lines line,
+.dmap-lines path {
+  stroke: var(--accent);
+  stroke-width: 1;
+  fill: none;
+  opacity: 0.3;
+}
+
+.dmap-lines path { stroke-linejoin: round; }
+
+.dmap-lines .on  { opacity: 1; }
+.dmap-lines .off { opacity: 0.05; }
+
+.dmap-era {
+  font-family: var(--geo);
+  font-size: 0.72rem;
+  font-weight: 400;
+  text-transform: uppercase;
+  letter-spacing: 0.14em;
+  color: var(--mute);
+  margin-bottom: 1.25rem;
+}
+
+.dmap-list {
+  list-style: none;
+  padding: 0;
+  margin: 0;
+}
+
+.dmap-list li + li { margin-top: 0.55rem; }
+
+/* Names carry no backing: the hairlines run behind the glyphs, visible in
+   the whitespace, so a crossing edge is never fully hidden. */
+.dmap-node {
+  position: relative;
+  z-index: 1;
+  display: block;
+  font-size: 0.8125rem;
+  font-weight: 700;
+  letter-spacing: -0.01em;
+  line-height: 1.25;
+  text-decoration: none;
+}
+
+.dmap-n {
+  font-family: var(--geo);
+  font-size: 0.62rem;
+  font-weight: 400;
+  letter-spacing: 0.08em;
+  color: var(--accent);
+  display: inline-block;
+  min-width: 1.9em;
+  vertical-align: 0.3em;
+}
+
+/* A director no affinity reaches keeps the number withheld — the map's
+   emptiness is data, not noise to be counted. (.dmap-zero stays in the
+   markup as that marker; the greys below speak favourite tiers only.) */
+
+/* Favourite tiers 3-5 — the full list below the core map, one step
+   lighter, so the greys say what the hand set, not the rank. */
+.dmap-list li[data-tier="2"] .dmap-node {
+  font-weight: 400;
+  color: var(--mute);
+  opacity: 0.7;
+}
+
+/* Crossed off — enjoyed but not watched enough to judge; kept for the
+   record, lightest of all. */
+.dmap-list li[data-crossed] .dmap-node {
+  font-weight: 400;
+  color: var(--mute);
+  opacity: 0.5;
+}
+
+/* Hovering singles out a director and the names its edges reach. */
+.dmap-node.near {
+  color: var(--accent);
+}
+
+.dmap-note {
+  font-size: 0.6875rem;
+  line-height: 1.5;
+  color: var(--mute);
+  max-width: 46em;
+  margin-top: 1rem;
+}
+
+/* The index: every director with their affinities as text. This, not the
+   schematic, is the map without script. */
+
+.d-era {
+  grid-column: 1 / 10;
+  border-top: 1px solid var(--ink);
+  padding-top: 1rem;
+  margin-top: clamp(3rem, 10vh, 6rem);
+}
+
+.directors .dmap-view + .d-era { margin-top: clamp(2rem, 8vh, 5rem); }
+
+.d-list {
+  list-style: none;
+  padding: 0;
+}
+
+.d-entry + .d-entry { margin-top: 2.75rem; }
+
+.d-name {
+  font-size: clamp(1.25rem, 2.4vw, 1.9rem);
+  font-weight: 700;
+  letter-spacing: -0.015em;
+  line-height: 1.15;
+}
+
+.d-meta {
+  font-family: var(--geo);
+  font-size: 0.68rem;
+  text-transform: uppercase;
+  letter-spacing: 0.12em;
+  color: var(--mute);
+  margin: 0.4rem 0 1.1rem;
+}
+
+/* Crossed-off directors read lighter here too, as in the schematic. */
+.d-entry[data-crossed] .d-name {
+  color: var(--mute);
+  opacity: 0.6;
+}
+
+.d-edges .edge + .edge { margin-top: 1rem; }
+
+.d-edges .edge-to {
+  font-size: clamp(1rem, 1.8vw, 1.25rem);
+}
+
+@media (max-width: 859px) {
+  .dmap-scroll { margin-top: 2rem; }
+  .dmap-note { margin-top: 0.75rem; }
+  .d-era { margin-top: 3rem; }
+  .d-entry + .d-entry { margin-top: 2rem; }
+}
+
+/* ---- the diagram (refs/diagram.html) ---- */
+
+.dg-block { overflow-x: auto; }
+
+.dg-svg {
+  display: block;
+  width: 100%;
+  max-width: 56em;
+  margin: 0 auto;
+  overflow: visible;
+}
+
+.dg-svg .dg-axis {
+  font-family: var(--geo);
+  font-size: 15px;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  fill: var(--ink);
+}
+
+.dg-svg .dg-t1 {
+  font-family: var(--text);
+  font-size: 11.5px;
+  font-weight: 600;
+  fill: var(--ink);
+}
+
+.dg-svg .dg-t0 {
+  font-family: var(--text);
+  font-size: 10px;
+  fill: var(--mute);
+}
+
+.dg-svg .dg-t2n {
+  font-family: var(--text);
+  font-size: 11.5px;
+  font-weight: 600;
+  fill: var(--ink);
+}
+
+.dg-svg .dg-link { fill: inherit; text-decoration: none; }
+.dg-svg .dg-link:hover { fill: var(--accent); }
+
+.dg-svg .dg-dot { fill: var(--ink); opacity: .45; }
+.dg-svg .dg-dot-a:hover .dg-dot { fill: var(--accent); opacity: 1; }
+
+.dg-list li { font-size: 0.85rem; }
+
+/* ---- The network (network.html) ----
+   A force-directed reading of the directors' edges, script-drawn on one
+   canvas. The stage is hidden without script; the index below it is the
+   page's baseline. Nodes keep the directors map's three greys, edges the
+   accent. On wide screens the panel sits beside the canvas; on narrow
+   ones it rises as a sheet over the lower half. */
+
+.network .entry-head { grid-column: 1 / 9; }
+.network .entry-bio  { grid-column: 9 / 13; }
+
+.nw {
+  grid-column: 1 / 13;
+  margin-top: clamp(2rem, 6vh, 4rem);
+}
+
+.nw[hidden] { display: none; }
+
+.nw-controls {
+  border-top: 1px solid var(--ink);
+  padding-top: 1rem;
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.6rem 2.25rem;
+}
+
+.nw-group {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: baseline;
+  gap: 0 1rem;
+}
+
+.nw-label,
+.nw-tools button,
+.nw-w button,
+.nw-wnote {
+  font-family: var(--geo);
+  font-size: 0.68rem;
+  text-transform: uppercase;
+  letter-spacing: 0.12em;
+  color: var(--mute);
+}
+
+.nw-stage {
+  position: relative;
+  display: grid;
+  grid-template-columns: 1fr;
+  margin-top: 1rem;
+  border-top: 1px solid var(--ink);
+}
+
+.nw-canvas {
+  display: block;
+  width: 100%;
+  height: min(78vh, 52rem);
+  touch-action: none;
+  cursor: grab;
+}
+
+.nw-panel {
+  font-size: 0.875rem;
+}
+
+.nw-panel button {
+  background: none;
+  border: none;
+  padding: 0;
+  cursor: pointer;
+  color: inherit;
+  font: inherit;
+}
+
+.nw-panel .d-edges { list-style: none; padding: 0; }
+
+.nw-hint {
+  color: var(--mute);
+  font-size: 0.8125rem;
+  max-width: 24em;
+}
+
+.nw-name {
+  font-size: clamp(1.5rem, 2.6vw, 2.25rem);
+  font-weight: 700;
+  line-height: 1.05;
+  letter-spacing: -0.02em;
+  padding-right: 2rem;
+}
+
+.nw-links {
+  font-size: 0.75rem;
+  margin-bottom: 1.25rem;
+}
+
+.nw-panel .nw-to {
+  font-size: 1.125rem;
+  font-weight: 700;
+  letter-spacing: -0.015em;
+  line-height: 1.2;
+  text-align: left;
+}
+
+.nw-panel .nw-to:hover,
+.nw-panel button:hover { color: var(--accent); }
+
+.nw-w {
+  display: flex;
+  align-items: baseline;
+  gap: 0.6rem;
+  margin-top: 0.35rem;
+}
+
+.nw-panel .nw-w button { font-size: 0.9rem; width: 1.2em; }
+
+.nw-wn {
+  font-family: var(--geo);
+  font-size: 0.8rem;
+  min-width: 0.8em;
+  text-align: center;
+}
+
+.nw-tools {
+  display: flex;
+  gap: 1.5rem;
+  margin-top: 1.5rem;
+  border-top: 1px solid var(--ink);
+  padding-top: 0.75rem;
+}
+
+.nw-close {
+  position: absolute;
+  top: 0.75rem;
+  right: 0;
+  font-size: 1.25rem !important;
+  line-height: 1;
+}
+
+.nw-index { grid-column: 1 / 13; margin-top: clamp(3rem, 10vh, 6rem); }
+.nw-index .d-list { columns: 2 22rem; column-gap: calc(var(--gutter) * 3); }
+.nw-index .d-entry { break-inside: avoid; padding-bottom: 2.25rem; }
+.nw-index .d-entry + .d-entry { margin-top: 0; }
+.nw-index .d-edges { list-style: none; padding: 0; }
+.nw-index .d-name a { text-decoration: none; }
+.nw-index .d-meta a { color: inherit; }
+.d-entry:target .d-name { color: var(--accent); }
+
+@media (min-width: 760px) {
+  .nw-stage { grid-template-columns: 1fr minmax(17rem, 24rem); column-gap: var(--gutter); }
+  .nw-panel {
+    position: relative;
+    height: min(78vh, 52rem);
+    overflow-y: auto;
+    border-left: 1px solid var(--ink);
+    padding: 1rem 0 1rem var(--gutter);
+  }
+}
+
+@media (max-width: 759px) {
+  .nw-panel {
+    padding: 1rem 0;
+  }
+  .nw-panel.is-open {
+    position: fixed;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    z-index: 5;
+    max-height: 50vh;
+    overflow-y: auto;
+    background: var(--ground);
+    border-top: 1px solid var(--ink);
+    padding: 1rem var(--margin) calc(1rem + env(safe-area-inset-bottom));
+  }
+  .nw-close { right: var(--margin); }
+}
