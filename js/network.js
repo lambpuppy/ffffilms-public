@@ -116,7 +116,7 @@
     });
   }
 
-  // The diagram's geometry (refs/diagram.html): axis i at -90 + 72i
+  // The diagram's geometry (circle.html): axis i at -90 + 72i
   // degrees, a lean 17 degrees off the spoke, canonical at the centre.
   var RMAX = 900;
   nodes.forEach(function (n) {

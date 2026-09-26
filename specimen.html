@@ -1,18 +1,37 @@
 <!DOCTYPE html>
-<html lang="en"><head><meta charset="utf-8">
+<html lang="en">
+<head>
+<meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
-<title>Specimen sheet — mockup</title>
-<link rel="stylesheet" href="../css/style.css">
+<title>Specimen sheet — ffffilms</title>
+<meta name="description" content="A navigable conceptual map of cinema: filmmakers, films, and the concepts that run between them.">
+<link rel="icon" type="image/svg+xml" href="assets/motif.svg">
+<link rel="stylesheet" href="css/style.css">
+<script src="js/main.js" defer></script>
+</head>
+<body>
+
+<details class="menu">
+  <summary aria-label="Menu" title="Menu"><img src="assets/motif.svg" alt="" width="64" height="64"></summary>
+  <nav aria-label="Pages">
+    <ul>
+    <li><a href="collection.html">Collection</a></li>
+    <li><a href="exploration.html">Exploration</a></li>
+    </ul>
+  </nav>
+</details>
+
+<header class="node-head grid">
+  <a class="back" href="collection.html">Collection</a>
+</header>
+
 <style>
-.mk { padding-top: var(--margin); padding-bottom: 4rem; }
+.mk { margin-top: clamp(2rem, 8vh, 5rem); padding-bottom: 4rem; }
 .mk-head { display: grid; grid-template-columns: repeat(12, 1fr); column-gap: var(--gutter); }
 .mk-head .node-kind { grid-column: 1 / 13; }
 .mk-head h1 { grid-column: 1 / 9; font-size: clamp(2.5rem, 6vw, 5rem); font-weight: 700;
   letter-spacing: -0.03em; line-height: .95; }
 .mk-head .mk-lede { grid-column: 9 / 13; font-size: .875rem; line-height: 1.55; align-self: end; }
-.mk-nav { font-family: var(--geo); font-size: .7rem; letter-spacing: .14em; text-transform: uppercase;
-  color: var(--mute); margin-bottom: 2.5rem; display: flex; gap: 1.5rem; }
-.mk-nav a { text-decoration: none; }
 .mk-rule { border-top: 1px solid var(--ink); margin-top: 2.5rem; padding-top: 1rem; }
 .mk-cap { font-family: var(--geo); font-size: .68rem; letter-spacing: .12em; text-transform: uppercase;
   color: var(--mute); }
@@ -41,13 +60,9 @@ svg text { font-family: var(--text); }
 .specimen-iso .face { stroke: var(--ink); stroke-width: .012; }
 .specimen-iso .iso { stroke-width: 1.4; vector-effect: non-scaling-stroke; }
 .specimen-iso .cn { font-size: 13px; font-weight: 700; fill: var(--ink); }
-
-</style></head><body>
+</style>
 <main class="mk">
-<nav class="mk-nav"><a href="index.html">Mockups</a><a href="city.html">1 · City</a>
-<a href="specimen.html">3 · Specimen</a><a href="glyphs.html">6 · Glyphs</a>
-<a href="../network.html">Network</a><a href="../references.html">Exploration</a></nav>
-<header class="mk-head"><span class="node-kind">Mockup</span><h1>Specimen sheet</h1>
+<header class="mk-head"><span class="node-kind">View</span><h1>Specimen sheet</h1>
 <p class="mk-lede">Directors against techniques and concerns, each drawn as a small ink mark. Sorted so that shared practice shows up as blocks: where overlapping techniques gather, and who breaks the pattern.</p></header>
 
 <section class="mk-rule">
@@ -66,4 +81,12 @@ vocabulary (content/traits.json), researched like the edges.</p>
 </section>
 </main>
 
-</body></html>
+
+<footer class="site-foot">
+  <span>Type: Inter &amp; Jost, self-hosted, standing in for Helvetica &amp; Futura.</span>
+  <span>Images remain © their owners; each carries its source.</span>
+  <span>Plain HTML &amp; CSS. Works without JavaScript.</span>
+</footer>
+
+</body>
+</html>

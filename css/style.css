@@ -158,13 +158,6 @@ img {
   white-space: nowrap;
 }
 
-.site-note {
-  grid-column: 9 / 13;
-  align-self: end;
-  font-size: 0.875rem;
-  max-width: 22em;
-}
-
 /* ---- The lead (summary + ways in) ---- */
 
 .home-lead {
@@ -198,20 +191,7 @@ img {
   display: block;
 }
 
-/* ---- The map (index) ---- */
-
-.map {
-  margin-top: clamp(3rem, 10vh, 7rem);
-}
-
-.ix-group {
-  border-top: 1px solid var(--ink);
-  padding-top: 1rem;
-}
-
-/* Two kinds, two columns, tops aligned. */
-.ix-group:nth-child(1) { grid-column: 1 / 6; }
-.ix-group:nth-child(2) { grid-column: 7 / 13; }
+/* ---- Index lists (the front page's ways in) ---- */
 
 .ix-kind {
   font-family: var(--geo);
@@ -470,15 +450,13 @@ figcaption {
   .js .node figure,
   .js .node .entry-head,
   .js .node .entry-bio,
-  .js .node .edges,
-  .js .map .ix-group {
+  .js .node .edges {
     opacity: 0;
     transform: translateY(1.25rem);
     transition: opacity 0.7s ease, transform 0.7s ease;
   }
 
-  .js .node .in-view,
-  .js .map .in-view {
+  .js .node .in-view {
     opacity: 1;
     transform: none;
   }
@@ -493,14 +471,6 @@ figcaption {
 
   .site-title {
     margin-bottom: 2rem;
-  }
-
-  .site-note {
-    margin-bottom: 2.5rem;
-  }
-
-  .ix-group + .ix-group {
-    margin-top: 3rem;
   }
 
   .entry-bio {
