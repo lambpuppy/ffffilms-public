@@ -884,6 +884,26 @@ figcaption {
   max-width: 24em;
 }
 
+/* Category tooltips: one line of context for a diagram's axis, lane,
+   concept, or control. Enhancement only (js/main.js). */
+.tip {
+  position: fixed;
+  z-index: 40;
+  transform: translate(-50%, -100%);
+  max-width: 26em;
+  padding: 0.4rem 0.55rem;
+  background: var(--ink);
+  color: var(--ground);
+  font-family: var(--text);
+  font-size: 0.78rem;
+  line-height: 1.45;
+  pointer-events: none;
+}
+
+.tip.tip-below { transform: translate(-50%, 0); }
+
+svg [data-tip] { cursor: help; }
+
 .nw-name {
   font-size: clamp(1.5rem, 2.6vw, 2.25rem);
   font-weight: 700;

@@ -54,7 +54,9 @@
 
   // ---- State ----
 
-  var TYPES = [["aff", "Affinity"], ["inf", "Influence"], ["col", "Worked with"]]
+  var TYPES = [["aff", "Affinity", "A shared tendency rather than a documented influence."],
+               ["inf", "Influence", "A documented or argued line from one director to another."],
+               ["col", "Worked with", "A collaboration."]]
     .filter(function (t) { return edges.some(function (e) { return e.type === t[0]; }); });
   var AXES = DATA.axes;
   var OFF = "Off the chart";
@@ -610,9 +612,10 @@
 
   // ---- Controls: type, not widgets (DESIGN.md → Views) ----
 
-  function btn(label, on, data) {
+  function btn(label, on, data, tip) {
     return '<button type="button" class="nw-switch-btn' + (on ? " is-active" : "") +
-      '" aria-pressed="' + on + '" ' + data + ">" + label + "</button>";
+      '" aria-pressed="' + on + '" ' + data +
+      (tip ? ' data-tip="' + esc(tip) + '"' : "") + ">" + label + "</button>";
   }
   function renderControls() {
     var html = '<span class="nw-group">' +
@@ -620,12 +623,15 @@
       "</span>";
     if (TYPES.length > 1) {
       html += '<span class="nw-group">' + TYPES.map(function (t) {
-        return btn(t[1], state.types[t[0]], 'data-type="' + t[0] + '"');
+        return btn(t[1], state.types[t[0]], 'data-type="' + t[0] + '"', t[2]);
       }).join("") + "</span>";
     }
     var cats = AXES.concat(nodes.some(function (n) { return !n.cat; }) ? [OFF] : []);
     html += '<span class="nw-group nw-group--cats">' + btn("All", !anyCat(), 'data-cat=""') +
-      cats.map(function (c) { return btn(c, !!state.cats[c], 'data-cat="' + c + '"'); }).join("") +
+      cats.map(function (c) {
+        return btn(c, !!state.cats[c], 'data-cat="' + c + '"',
+                   (DATA.axis_notes || {})[c]);
+      }).join("") +
       btn("+ Secondary", state.secondary, 'data-secondary="1"') + "</span>";
     html += '<span class="nw-group">' + btn("Without edges", state.loose, 'data-loose="1"') + "</span>";
     html += '<span class="nw-group"><span class="nw-label">Weight \u2265</span>' +
