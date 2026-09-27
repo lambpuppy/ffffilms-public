@@ -373,6 +373,12 @@ figcaption {
     margin-top: 2.5rem;
   }
 
+  /* The Circle takes the narrow screen edge to edge: the page margin
+     would otherwise cost it a tenth of the width (DESIGN.md, Grid). */
+  .dg-block {
+    margin-left: calc(-1 * var(--margin));
+    margin-right: calc(-1 * var(--margin));
+  }
 }
 
 /* ---- Views ----
@@ -579,11 +585,6 @@ figcaption {
 }
 
 .ep-mark.ep-seen { color: var(--ink); }
-
-.ep-note {
-  font-size: 0.78rem;
-  color: var(--mute);
-}
 
 /* ---- Reference page (Schrader's diagram) ---- */
 
@@ -879,6 +880,12 @@ figcaption {
   padding-right: 2rem;
 }
 
+.nw-bio {
+  margin: -0.4rem 0 1.1rem;
+  max-width: 30em;
+  line-height: 1.55;
+}
+
 .nw-lb {
   margin: -0.9rem 0 1.1rem;
 }
@@ -964,6 +971,13 @@ figcaption {
   .nw-panel {
     padding: 1rem 0;
   }
+  /* The canvas alone bleeds; the panel stays on the margin. The side
+     panel would collide with a bleed above this breakpoint. */
+  .nw-canvas {
+    width: calc(100% + 2 * var(--margin));
+    margin-left: calc(-1 * var(--margin));
+    margin-right: calc(-1 * var(--margin));
+  }
   .nw-panel.is-open {
     position: fixed;
     left: 0;
@@ -977,4 +991,37 @@ figcaption {
     padding: 1rem var(--margin) calc(1rem + env(safe-area-inset-bottom));
   }
   .nw-close { right: var(--margin); }
+}
+
+.dg-panel {
+  position: fixed;
+  top: 0;
+  right: 0;
+  bottom: 0;
+  z-index: 6;
+  width: min(22rem, 92vw);
+  height: auto;
+  overflow-y: auto;
+  background: var(--ground);
+  border-left: 1px solid var(--ink);
+  padding: 1.25rem var(--margin) 2rem;
+  visibility: hidden;
+  transform: translateX(calc(100% + 1px));
+}
+
+.dg-panel.is-open {
+  visibility: visible;
+  transform: none;
+}
+
+@media (max-width: 759px) {
+  .dg-panel {
+    top: auto;
+    width: auto;
+    max-height: 50vh;
+    border-left: 0;
+    border-top: 1px solid var(--ink);
+    padding: 1rem var(--margin) calc(1rem + env(safe-area-inset-bottom));
+    transform: translateY(calc(100% + 1px));
+  }
 }

@@ -482,6 +482,10 @@
     });
   }
 
+  function rich(s) {
+    return esc(s).replace(/&lt;em&gt;/g, "<em>").replace(/&lt;\/em&gt;/g, "</em>");
+  }
+
   function relLabel(e, id) {
     if (e.type === "inf") return e.s === id ? "Influenced" : "Influenced by";
     return e.type === "col" ? "Worked with" : "Affinity";
@@ -548,6 +552,7 @@
       '<button type="button" class="nw-close" data-act="close" aria-label="Close">×</button>' +
       '<h2 class="nw-name">' + esc(n.name) + "</h2>" +
       '<p class="d-meta">' + esc(n.meta) + "</p>" +
+      (n.bio ? '<p class="nw-bio">' + rich(n.bio) + "</p>" : "") +
       (n.lb ? '<p class="nw-lb"><a href="' + esc(n.lb) +
         '" target="_blank" rel="noopener">Letterboxd</a></p>' : "") +
       '<ul class="d-edges">' + (rows || '<li class="edge"><span class="edge-why">No edges yet.</span></li>') +

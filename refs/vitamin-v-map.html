@@ -41,6 +41,10 @@ svg text { font-family: var(--text); }
   .mk-head .mk-lede { margin-top: 1rem; } }
 
 .city-wrap { overflow-x: auto; margin-top: 1rem; }
+@media (max-width: 859px) {
+  /* The map takes the narrow screen edge to edge (DESIGN.md, Grid). */
+  .city-wrap { margin-left: calc(-1 * var(--margin)); margin-right: calc(-1 * var(--margin)); }
+}
 .city { width: 100%; min-width: 900px; height: auto; display: block; }
 .city text { pointer-events: none; user-select: none; -webkit-user-select: none; }
 .city .plate { fill: #e7e4dd; stroke: #d6d2c9; stroke-width: .6; }
@@ -65,9 +69,14 @@ svg text { font-family: var(--text); }
 .city .selname { font-size: 13px; font-weight: 700; fill: var(--accent); paint-order: stroke;
   stroke: var(--ground); stroke-width: 1.3px; stroke-linejoin: round; pointer-events: none; }
 .city #arcs path { pointer-events: none; fill: none; stroke: var(--accent); stroke-linecap: round; opacity: .85; }
-.city-panel { position: fixed; left: 0; right: 0; bottom: 0; z-index: 10; max-height: 50vh;
+.city-panel { position: fixed; left: 0; right: 0; bottom: 0; z-index: 10; max-height: 40vh;
   overflow-y: auto; background: var(--ground); border-top: 1px solid var(--ink);
   padding: 1.25rem var(--margin) 1.5rem; box-shadow: 0 -8px 24px rgba(0,0,0,.06); }
+.city-panel .d-edges { list-style: none; padding: 0; margin-top: 1rem; }
+.city-panel button { background: none; border: 0; padding: 0; cursor: pointer; color: inherit;
+  font: inherit; text-align: left; }
+.city-panel .nw-to { font-size: 1.125rem; font-weight: 700; letter-spacing: -0.015em; line-height: 1.2; }
+.city-panel .nw-to:hover { color: var(--accent); }
 .city-panel[hidden] { display: none; }
 .cp-body { max-width: 46em; }
 .cp-close { position: absolute; top: 1rem; right: var(--margin); font-family: var(--geo);
@@ -166,6 +175,12 @@ function unselect() {
 var closer = document.querySelector('.cp-close');
 if (closer) closer.addEventListener('click', unselect);
 document.addEventListener('keydown', function (e) { if (e.key === 'Escape') unselect(); });
+// a name in the panel selects its director, as on the network and circle
+var panelEl = document.getElementById('city-panel');
+if (panelEl) panelEl.addEventListener('click', function (e) {
+  var b = e.target.closest('button[data-id]');
+  if (b) arcs(b.dataset.id);
+});
 // a click on empty ground (anything but a block or a footprint) clears it
 document.querySelector('.city').addEventListener('click', function (e) {
   if (!e.target.closest('.cube, .ghost')) unselect();
