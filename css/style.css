@@ -549,6 +549,18 @@ figcaption {
 .tp-tree .tp-leaf { font-family: var(--text); font-size: 15px; }
 .tp-tree a:hover .tp-leaf { fill: var(--accent); }
 
+/* A topic's concepts as a constellation: an idea node with the names
+   that carry it beneath, and a curved line for each shared ground. Like
+   the tree, it keeps its size and scrolls sideways on a phone. */
+.cf-wrap { overflow-x: auto; margin-top: 1rem; }
+.cf { width: 100%; min-width: 640px; height: auto; display: block; }
+.cf path { fill: none; stroke: var(--mute); stroke-width: 1; stroke-dasharray: 2 4; }
+.cf circle { fill: var(--ink); }
+.cf text { fill: var(--ink); }
+.cf .cf-head { font-family: var(--geo); font-size: 12px; letter-spacing: 0.14em; }
+.cf .cf-name { font-family: var(--text); font-size: 15px; }
+.cf a:hover .cf-name { fill: var(--accent); }
+
 /* A name links to its entry in the network's index. */
 .ep-name a { color: inherit; text-decoration: none; }
 .ep-name a:hover { color: var(--accent); }
