@@ -72,19 +72,19 @@ svg text { font-family: var(--text); }
 .city-panel { position: fixed; left: 0; right: 0; bottom: 0; z-index: 10; max-height: 40vh;
   overflow-y: auto; background: var(--ground); border-top: 1px solid var(--ink);
   padding: 1.25rem var(--margin) 1.5rem; box-shadow: 0 -8px 24px rgba(0,0,0,.06); }
-.city-panel .d-edges { list-style: none; padding: 0; margin-top: 1rem; }
-.city-panel button { background: none; border: 0; padding: 0; cursor: pointer; color: inherit;
+.cp-body .d-edges { list-style: none; padding: 0; margin-top: 1rem; }
+.cp-body button { background: none; border: 0; padding: 0; cursor: pointer; color: inherit;
   font: inherit; text-align: left; }
-.city-panel .nw-to { font-size: 1.125rem; font-weight: 700; letter-spacing: -0.015em; line-height: 1.2; }
-.city-panel .nw-to:hover { color: var(--accent); }
+.cp-body .nw-to { font-size: 1.125rem; font-weight: 700; letter-spacing: -0.015em; line-height: 1.2; }
+.cp-body .nw-to:hover { color: var(--accent); }
 .city-panel[hidden] { display: none; }
 .cp-body { max-width: 46em; }
-.cp-close { position: absolute; top: 1rem; right: var(--margin); font-family: var(--geo);
-  font-size: .68rem; letter-spacing: .14em; text-transform: uppercase; background: none;
-  border: 0; color: var(--mute); cursor: pointer; padding: .25rem 0; }
+.cp-close { position: absolute; top: .9rem; right: calc(var(--margin) - .5rem); background: none;
+  border: 0; color: var(--mute); cursor: pointer; padding: .5rem; font-family: var(--text);
+  font-size: 1rem; line-height: 1; }
 .cp-close:hover { color: var(--accent); }
 .cp-name { font-size: 1.5rem; font-weight: 700; letter-spacing: -0.01em; line-height: 1.1;
-  margin-right: 5rem; }
+  margin-right: 2.5rem; }
 .cp-meta { font-family: var(--geo); font-size: .68rem; letter-spacing: .12em; text-transform: uppercase;
   color: var(--mute); margin-top: .5rem; }
 .cp-text { font-size: .9375rem; line-height: 1.55; margin-top: .75rem; }
@@ -104,7 +104,7 @@ svg text { font-family: var(--text); }
 <p class="mk-note">Placements are estimates judged from the research on each artist, with the reason shown in each artist&#x27;s panel; the full reference is on the Vitamin V page under Exploration. 102 of 102 placed.</p>
 </section>
 <aside class="city-panel" id="city-panel" aria-live="polite" hidden>
-<button type="button" class="cp-close" aria-label="Close">Close</button>
+<button type="button" class="cp-close" aria-label="Close">×</button>
 <div class="cp-body"></div>
 </aside>
 </main>
