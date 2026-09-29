@@ -120,12 +120,14 @@
   }
 
   // The diagram's geometry (circle.html): axis i at -90 + 72i
-  // degrees, a lean 17 degrees off the spoke, canonical at the centre.
+  // degrees, a lean a third of the sector off the spoke, canonical at
+  // the centre.
   var RMAX = 900;
   nodes.forEach(function (n) {
     if (!n.cat) { n.tx = n.ty = null; return; }
     var i = AXES.indexOf(n.cat);
-    var a = (-90 + i * 360 / AXES.length + n.lean * 17) * Math.PI / 180;
+    var sector = 360 / AXES.length;
+    var a = (-90 + i * sector + n.lean * sector / 3) * Math.PI / 180;
     var r = RMAX * (0.3 + 0.65 * Math.pow(n.radius, 0.9));
     n.tx = r * Math.cos(a); n.ty = r * Math.sin(a);
   });
