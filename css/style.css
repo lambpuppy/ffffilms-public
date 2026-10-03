@@ -377,7 +377,8 @@ figcaption {
    values and coverage stay in ink at caption scale. */
 
 .view,
-.network {
+.network,
+.mk {
   margin-top: clamp(3rem, 12vh, 8rem);
 }
 
