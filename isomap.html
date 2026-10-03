@@ -28,16 +28,16 @@
 <style>
 .mk { margin-top: clamp(2rem, 8vh, 5rem); padding-bottom: 4rem; }
 .mk-head { display: grid; grid-template-columns: repeat(12, 1fr); column-gap: var(--gutter); }
-.mk-head .node-kind { grid-column: 1 / 13; }
 .mk-head h1 { grid-column: 1 / 9; font-size: clamp(2.5rem, 6vw, 5rem); font-weight: 700;
   letter-spacing: -0.03em; line-height: .95; }
+.mk-head .mk-meta { grid-column: 1 / 9; }
 .mk-head .mk-lede { grid-column: 9 / 13; font-size: .875rem; line-height: 1.55; align-self: end; }
 .mk-rule { border-top: 1px solid var(--ink); margin-top: 2.5rem; padding-top: 1rem; }
 .mk-cap { font-family: var(--geo); font-size: .68rem; letter-spacing: .12em; text-transform: uppercase;
   color: var(--mute); }
 .mk-note { font-size: .8125rem; color: var(--mute); max-width: 44em; margin-top: 1rem; line-height: 1.55; }
 svg text { font-family: var(--text); }
-@media (max-width: 859px) { .mk-head h1, .mk-head .mk-lede { grid-column: 1 / 13; }
+@media (max-width: 859px) { .mk-head h1, .mk-head .mk-meta, .mk-head .mk-lede { grid-column: 1 / 13; }
   .mk-head .mk-lede { margin-top: 1rem; } }
 
 .city-wrap { overflow-x: auto; margin-top: 1rem; }
@@ -97,8 +97,9 @@ svg text { font-family: var(--text); }
 .city #arcs path.dash { stroke-dasharray: 5 4; } .city #arcs path.dot { stroke-dasharray: 1.5 3; }
 </style>
 <main class="mk">
-<header class="mk-head"><span class="node-kind">View</span><h1>Isometric map</h1>
-<p class="mk-lede">Every director on the circle as a block on a plan of axis against era. It shows the shape of the collection itself: the dense districts, the empty lots, and where viewing runs deep.</p></header>
+<header class="mk-head"><h1>Isometric map</h1>
+<p class="entry-meta mk-meta">multidimensional visualisation combining the categories and connections</p>
+</header>
 
 <section class="mk-rule">
 <p class="mk-cap">Lanes: the five axes of the Circle diagram · rows: the decade of the anchor film · height: films seen · shade: tier (core, full list, crossed off) · dashed footprint: the same director in a secondary category · click a cube for its edges, drawn as arcs in the accent, with the connected names · the panel below carries the same note, bio and edges as the network</p>

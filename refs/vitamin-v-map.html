@@ -28,16 +28,16 @@
 <style>
 .mk { margin-top: clamp(2rem, 8vh, 5rem); padding-bottom: 4rem; }
 .mk-head { display: grid; grid-template-columns: repeat(12, 1fr); column-gap: var(--gutter); }
-.mk-head .node-kind { grid-column: 1 / 13; }
 .mk-head h1 { grid-column: 1 / 9; font-size: clamp(2.5rem, 6vw, 5rem); font-weight: 700;
   letter-spacing: -0.03em; line-height: .95; }
+.mk-head .mk-meta { grid-column: 1 / 9; }
 .mk-head .mk-lede { grid-column: 9 / 13; font-size: .875rem; line-height: 1.55; align-self: end; }
 .mk-rule { border-top: 1px solid var(--ink); margin-top: 2.5rem; padding-top: 1rem; }
 .mk-cap { font-family: var(--geo); font-size: .68rem; letter-spacing: .12em; text-transform: uppercase;
   color: var(--mute); }
 .mk-note { font-size: .8125rem; color: var(--mute); max-width: 44em; margin-top: 1rem; line-height: 1.55; }
 svg text { font-family: var(--text); }
-@media (max-width: 859px) { .mk-head h1, .mk-head .mk-lede { grid-column: 1 / 13; }
+@media (max-width: 859px) { .mk-head h1, .mk-head .mk-meta, .mk-head .mk-lede { grid-column: 1 / 13; }
   .mk-head .mk-lede { margin-top: 1rem; } }
 
 .city-wrap { overflow-x: auto; margin-top: 1rem; }
@@ -97,7 +97,7 @@ svg text { font-family: var(--text); }
 .city #arcs path.dash { stroke-dasharray: 5 4; } .city #arcs path.dot { stroke-dasharray: 1.5 3; }
 </style>
 <main class="mk">
-<header class="mk-head"><span class="node-kind">Reference</span><h1>Vitamin V map</h1>
+<header class="mk-head"><h1>Vitamin V map</h1>
 <p class="mk-lede">The 102 artists of Phaidon's Vitamin V, placed by how their images are made and how far their work sits from the cinema. Height and shade show what can be watched from home.</p></header>
 
 <section class="mk-rule">

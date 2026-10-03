@@ -237,16 +237,6 @@ img {
   color: var(--mute);
 }
 
-.node-kind {
-  display: block;
-  font-family: var(--geo);
-  font-size: 0.75rem;
-  letter-spacing: 0.15em;
-  text-transform: uppercase;
-  color: var(--accent);
-  margin-bottom: 1.25rem;
-}
-
 .entry-name {
   font-size: clamp(2.5rem, 8.5vw, 8rem);
   font-weight: 700;
@@ -386,10 +376,9 @@ figcaption {
    no number is printed. The accent marks the anchor and the path, so axis
    values and coverage stay in ink at caption scale. */
 
-.view {
+.view,
+.network {
   margin-top: clamp(3rem, 12vh, 8rem);
-  border-top: 1px solid var(--ink);
-  padding-top: 1rem;
 }
 
 .view .entry-head { grid-column: 1 / 9; }
